@@ -1,39 +1,92 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_infinite_loop_list
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A simple and lightweight Flutter widget for creating **infinite looping lists** with optional **auto-scroll** support.  
+Perfect for carousels, banners, news tickers, and any scrollable content that should repeat infinitely.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## 🎥 Preview
 
-## Features
+![Preview](https://raw.githubusercontent.com/fluttersample/flutter_infinite_loop_list/main/assets/preview.gif)
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## 🚀 Features
 
-## Usage
+✅ Infinite scroll (loop) in both directions  
+✅ Works with both horizontal and vertical lists  
+✅ Supports any custom item widget  
+✅ Smooth and efficient scrolling  
+✅ Easy to integrate into any Flutter project  
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+---
 
-```dart
-const like = 'sample';
+
+## 📦 Installation
+
+Add this to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  flutter_infinite_loop_list: ^1.0.0
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+
+## Usage/Examples
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_infinite_loop_list/flutter_infinite_loop_list.dart';
+
+class DemoScreen extends StatelessWidget {
+  const DemoScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Infinite Auto Scroll List")),
+      body: InfiniteLoopList(
+        itemCount: 10,
+        scrollDirection: Axis.vertical,
+        scrollSpeed: 3.0,
+        pauseDuration: const Duration(seconds: 3),
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (context, index) {
+          return Container(
+            height: 90,
+            margin: const EdgeInsets.symmetric(vertical: 6),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.green[400]!, Colors.green[700]!],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(color: Colors.black26, blurRadius: 6, offset: const Offset(0, 3))
+              ],
+            ),
+            child: Center(
+              child: Text(
+                "Item ${index + 1}",
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+```
+
+## License
+
+This project is released under the MIT License — see the [LICENSE](./LICENSE) file for details.
+© 2025 mohamad dev
+
+---
+
+
+Created with ❤️ by <mohamad.drm159@gmail.com>
