@@ -107,6 +107,7 @@ class _VerticalListScreenState extends State<VerticalListScreen> {
             return InfiniteLoopList(
             scrollDirection: Axis.vertical,
             scrollSpeed: 3.0,
+            enableAutoScroll: false,
             pauseDuration: const Duration(seconds: 3),
             padding: const EdgeInsets.all(16),
                 itemBuilder: (context, index) {

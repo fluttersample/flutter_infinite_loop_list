@@ -31,6 +31,9 @@ class InfiniteLoopList extends StatefulWidget {
   /// The number of items in the repeating list.
   final int itemCount;
 
+
+  final bool enableAutoScroll;
+
   /// Optional custom scroll behavior for the list.
   final MaterialScrollBehavior? scrollBehavior;
 
@@ -64,7 +67,7 @@ class InfiniteLoopList extends StatefulWidget {
     this.scrollSpeed = 1.0,
     this.pauseDuration = const Duration(seconds: 2),
     this.physics,
-    this.padding,
+    this.padding,  this.enableAutoScroll = true,
   }) {
     assert(scrollSpeed > 0, 'scrollSpeed must be greater than 0');
     assert(pauseDuration > Duration.zero, 'pauseDuration must be positive');
@@ -90,6 +93,7 @@ class _InfiniteLoopListState extends State<InfiniteLoopList> {
   }
 
   void _startAutoScroll() {
+    if(!widget.enableAutoScroll)return;
     _autoScrollTimer?.cancel();
     _autoScrollTimer = Timer.periodic(const Duration(milliseconds: 16), (_) {
       if (!_controller.hasClients) return;
@@ -119,6 +123,7 @@ class _InfiniteLoopListState extends State<InfiniteLoopList> {
   }
 
   void _scheduleResume() {
+    if(!widget.enableAutoScroll)return;
     _resumeTimer?.cancel();
     _resumeTimer = Timer(widget.pauseDuration, () {
       if (mounted) {
@@ -131,8 +136,9 @@ class _InfiniteLoopListState extends State<InfiniteLoopList> {
   void didUpdateWidget(covariant InfiniteLoopList oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.scrollSpeed != widget.scrollSpeed ||
-        oldWidget.scrollDirection != widget.scrollDirection) {
-      _startAutoScroll(); // Restart with new speed/direction
+        oldWidget.scrollDirection != widget.scrollDirection ||
+    oldWidget.enableAutoScroll != widget.enableAutoScroll) {
+      _startAutoScroll();
     }
   }
 
