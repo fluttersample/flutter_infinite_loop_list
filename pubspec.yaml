@@ -1,6 +1,5 @@
 name: infinite_loop_list
-description: "A simple and lightweight Flutter widget for creating **infinite looping lists** with optional **auto-scroll** support.  
-Perfect for carousels, banners, news tickers, and any scrollable content that should repeat infinitely."
+description: A Flutter widget for creating infinite looping lists with optional auto-scroll support.
 version: 1.0.0
 homepage: https://github.com/fluttersample/flutter_infinite_loop_list
 
